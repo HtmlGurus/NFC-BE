@@ -2,8 +2,6 @@ import { body, param } from 'express-validator';
 import mongoose from 'mongoose';
 
 const isValidObjectId = (value) => mongoose.Types.ObjectId.isValid(value);
-const isValidEmployeeIdentifier = (value) =>
-  mongoose.Types.ObjectId.isValid(value) || /^ES\d+$/i.test(value);
 
 export const validateCreateEmployee = [
   body('name')
@@ -138,9 +136,7 @@ export const validateCreateEmployee = [
 ];
 
 export const validateUpdateEmployee = [
-  param('id')
-    .custom((value) => isValidEmployeeIdentifier(value))
-    .withMessage('Invalid employee ID (must be a valid ObjectId or ES code)'),
+  param('id').isMongoId().withMessage('Invalid employee ID'),
 
   body('name')
     .optional()
@@ -281,8 +277,4 @@ export const validateUpdateEmployee = [
     .withMessage('Invalid Linkedin URL'),
 ];
 
-export const validateEmployeeId = [
-  param('id')
-    .custom((value) => isValidEmployeeIdentifier(value))
-    .withMessage('Invalid employee ID (must be a valid ObjectId or ES code)'),
-];
+export const validateEmployeeId = [param('id').isMongoId().withMessage('Invalid employee ID')];
