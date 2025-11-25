@@ -1,5 +1,4 @@
 node_modules
-.env
 scripts/uploadLogo.js
 scripts/assign_employee_ids.js
 .logo-upload.json
@@ -8,3 +7,8 @@ updateEmployeeImageUrls.js
 updateDepartmentImageUrls.js
 printAllUrls.js
 fetchImageUrls.js
+docker-compose.yaml
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat
+config.bat

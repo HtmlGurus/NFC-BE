@@ -29,6 +29,13 @@ import {
   changePasswordRateLimiter,
 } from '../middlewares/rateLimiters.js';
 import { companyProfileExists } from '../middlewares/companyProfileExists.js';
+import { createRequire } from 'module';
+import { createRequire } from 'module';
+
+var require = createRequire(import.meta.url);
+var module = { exports: {} };
+
+const require = createRequire(import.meta.url);
 
 export const adminRoutes = express.Router();
 
