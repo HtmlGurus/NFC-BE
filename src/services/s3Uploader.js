@@ -33,7 +33,8 @@ export const uploadToS3 = async (fileBuffer, fileName, mimeType) => {
   const safeFileName = fileName.replace(/\s+/g, '-').toLowerCase();
   const ext = path.extname(safeFileName) || '.webp';
   const timestamp = Date.now();
-  const key = `${timestamp}-${safeFileName}`; // filename should already include admin id
+  const key = `images/${timestamp}-${safeFileName}`;
+  // const key = `${timestamp}-${safeFileName}`;
 
   const params = {
     Bucket: envConfig.s3.bucket,
@@ -45,9 +46,14 @@ export const uploadToS3 = async (fileBuffer, fileName, mimeType) => {
 
   const uploaded = await s3.upload(params).promise();
 
+  // return {
+  //   key: uploaded.Key,
+  //   // url: uploaded.Location,
+  //   url: `https://www.eurosystemsint.com/images/${uploaded.Key}`,
+  // };
   return {
     key: uploaded.Key,
-    url: uploaded.Location,
+    url: null,
   };
 };
 
